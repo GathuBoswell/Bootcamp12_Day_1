@@ -1,6 +1,7 @@
 # car_class_lab.py
 class Car(object):
-    def __init__(self, car_name='General', car_model='GM', car_type='saloon', car_doors=4, car_wheels=4):
+    def __init__(self, car_name='General', car_model='GM',
+                 car_type='saloon', car_doors=4, car_wheels=4):
         self.__car_name = car_name
         self.__car_model = car_model
         self._car_doors = car_doors
@@ -48,8 +49,14 @@ class Car(object):
 
     def drive(self,  drive_number):
         if self.type == 'trailer':
-            if drive_number >= 1:
+            if drive_number == 7:
                 self.speed = 77
+                return self
+            if drive_number in range(1, 7):
+                self.speed = 30
+                return self
+            if drive_number > 7:
+                self.speed = 0
                 return self
             return self
         else:
