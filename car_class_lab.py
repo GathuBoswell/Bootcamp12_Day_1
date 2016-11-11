@@ -6,6 +6,7 @@ class Car():
         self._car_doors = car_doors
         self.__car_type = car_type
         self._car_wheels = car_wheels
+        self._speed = 0
 
     @property
     def name(self):
@@ -33,3 +34,23 @@ class Car():
         if self.__car_type == 'saloon':
             return True
         return False
+
+    @property
+    def num_of_wheels(self):
+        if self.__car_type == 'trailer':
+            self._car_wheels = 8
+            return self._car_wheels
+        return self._car_wheels
+
+    @property
+    def speed(self):
+        return self._speed
+
+    def drive(self, drive_number):
+        if self.__car_type == 'trailer':
+            if drive_number >= 1:
+                self._speed = 77
+        else:
+            if drive_number >= 1:
+                self._speed = 1000
+
