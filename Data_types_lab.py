@@ -13,7 +13,7 @@ def data_type(test_data):
             return 'more than 100'
         else:
             return 'equal to 100'
-    elif type(test_data) == list:
+    elif type(test_data) == list: # catch Index error
         try:
             if test_data[2]:
                 return test_data[2]
@@ -23,4 +23,4 @@ def data_type(test_data):
         return (test_data, ' is of ', (type(test_data)))
     return 'Unrecognized Data type'
 
-print(data_type([1,2]))
+print(data_type(None))
