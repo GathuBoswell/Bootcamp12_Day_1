@@ -1,6 +1,6 @@
 # car_class_lab.py
-class Car():
-    def __init__(self, car_name='GM', car_model='general1', car_type='saloon', car_doors=4, car_wheels=4):
+class Car(object):
+    def __init__(self, car_name='General', car_model='GM', car_type='saloon', car_doors=4, car_wheels=4):
         self.__car_name = car_name
         self.__car_model = car_model
         self._car_doors = car_doors
@@ -18,7 +18,7 @@ class Car():
 
     @property
     def num_of_doors(self):
-        if self.__car_model in ['Koenigsegg', 'Porshe']:
+        if self.__car_name in ['Koenigsegg', 'Porshe']:
             self._car_doors = 2
             return self._car_doors
         return self._car_doors
@@ -57,12 +57,13 @@ class Car():
                 self.speed = 1000
                 return self
             return self
+
 def main():
     man = Car('MAN', 'Truck', 'trailer')
     moving_man = man.drive(7)
     moving_man_instance = isinstance(moving_man, Car)
     moving_man_type = type(moving_man) is Car
-    print(moving_man_instance, moving_man_type, moving_man.speed)
+    print(moving_man_instance, moving_man_type, moving_man.speed, man.speed)
 
     man = Car('Mercedes', 'SLR500')
     parked_speed = man.speed
