@@ -35,4 +35,9 @@ class Lab_Tech(Person):
 
 
 class Patient(Person):
-    pass
+    def _init__(self,fname, lname, age, id_no, patient_hospital_id):
+        self.__patient_id = patient_hospital_id
+        super().__init__(self)
+
+    def treatment_history(self, kwarg):
+        pass
