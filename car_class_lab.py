@@ -49,19 +49,13 @@ class Car(object):
 
     def drive(self,  drive_number):
         if self.type == 'trailer':
-            if drive_number == 7:
-                self.speed = 77
-                return self
-            if drive_number in range(1, 7):
-                self.speed = 30
-                return self
-            if drive_number > 7:
-                self.speed = 0
+            if drive_number in range(1, 8):
+                self.speed = 11 * drive_number
                 return self
             return self
         else:
-            if drive_number >= 1:
-                self.speed = 1000
+            if drive_number in range(1, 4):
+                self.speed = 997 + drive_number
                 return self
             return self
 
