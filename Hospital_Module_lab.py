@@ -15,6 +15,10 @@ class Doctor(Person):
     def can_treat_patient(self):
         return True
 
+    def order_lab_test(self, patient_hospital_id, test_type, instructions):
+        test_details = {patient_hospital_id:(test_type, [instructions])}
+        return test_details
+
 
 class Nurse(Person):
     def __init__(self, fname, lname, age, id_no, nurse_hospital_id):
@@ -33,6 +37,15 @@ class LabTech(Person):
     def can_treat_patient(self):
         return False
 
+    def view_lab_test_request(self, **lab_test_request):
+        for k, v in lab_test_request.items():
+            lab_test_id = k + '001A' # require a generator to issue unique id for each request
+            return lab_test_id
+
+    def return_lab_test_results(self, lab_test_id):
+        lab_test_results = {lab_test_id:('results')}
+        return lab_test_results
+
 
 class Patient(Person):
     def __init__(self, fname, lname, age, id_no, patient_hospital_id):
@@ -41,7 +54,7 @@ class Patient(Person):
 
 
     def treatment_history(self, **patient_Med_History):
-        pass
+        return patient_Med_History
 
 def main():
     doc1 = Doctor('Boswell', 'Gathu', 55, 29736670, 'BG' )
