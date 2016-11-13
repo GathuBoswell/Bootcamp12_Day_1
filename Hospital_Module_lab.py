@@ -1,16 +1,24 @@
 class Person(object):
     def __init__(self, fname, lname, age, id_no):
-        self.__fname = fname
-        self.__lname = lname
-        self.__id_no = id_no
+        self._fname = fname
+        self._lname = lname
+        self._id_no = id_no
         self._age = age
-    def __str__(self):
-        return self.__fname + ' ' + self.__lname
+    def return_personal_info(self):
+        personal_details = {'Name': (self._fname + '' + self._lname),
+                            'Id_No': self._id_no, 'Age': self._age}
+        return personal_details
 
 class Doctor(Person):
     def __init__(self, fname, lname, age, id_no, doctor_hospital_id):
-        super().__init__(fname, lname, age, id_no)
         self.__doctor_hospital_id = doctor_hospital_id
+        super().__init__(fname, lname, age, id_no)
+
+    def return_personal_info(self):
+        personal_details = {'Name': (self._fname + '' + self._lname),
+                            'Id_No': self._id_no, 'Age': self._age,
+                            'Hospital_id': self.__doctor_hospital_id}
+        return personal_details
 
     def can_treat_patient(self):
         return True
@@ -24,6 +32,12 @@ class Nurse(Person):
     def __init__(self, fname, lname, age, id_no, nurse_hospital_id):
         self.__nurse_hospital_id = nurse_hospital_id
         super().__init__(fname, lname, age, id_no)
+        
+    def return_personal_info(self):
+        personal_details = {'Name': self._fname + '' + self._lname,
+                            'Id_No': self._id_no, 'Age': self._age,
+                            'Hospital_id': self.__nurse_hospital_id}
+        return personal_details
 
     def can_treat_patient(self):
         return True
@@ -33,6 +47,12 @@ class LabTech(Person):
     def __init__(self, fname, lname, age, id_no, lab_tech_hospital_id):
         self.__lab_tech_id = lab_tech_hospital_id
         super().__init__(fname, lname, age, id_no)
+
+    def return_personal_info(self):
+        personal_details = {'Name': self._fname + '' + self._lname,
+                            'Id_No': self._id_no, 'Age': self._age,
+                            'Hospital_id': self.__lab_tech_id}
+        return personal_details
 
     def can_treat_patient(self):
         return False
@@ -52,13 +72,26 @@ class Patient(Person):
         super().__init__(fname, lname, age, id_no)
         self.__patient_id = patient_hospital_id
 
+    def return_personal_info(self):
+        personal_details = {'Name': self._fname + '' + self._lname,
+                            'Id_No': self._id_no, 'Age': self._age,
+                            'Hospital_id': self.__patient_id}
+        return personal_details
 
     def treatment_history(self, **patient_Med_History):
         return patient_Med_History
 
 def main():
-    doc1 = Doctor('Boswell', 'Gathu', 55, 29736670, 'BG' )
-    print(isinstance(doc1, Doctor))
-    print(doc1.__str__())
+    doctor = Doctor('Boswell', 'Gathu', 55, 29736670, 'BG_1945_DC')
+    nurse = Nurse('Jeremy', 'Simpson', 34, 3426837, 'JS_1234_NU')
+    labtech = LabTech('Nyachanga', 'Gita', 47, 6390364, 'NG_4560_LT')
+    patient = Patient('Joshua', 'Mutuika', 89, 4379273, 'patient_D_105')
+
+
+    # print(isinstance(doc1, Doctor))
+    print('Doctor Details  :', doctor.return_personal_info())
+    print('Nurse Details   :', nurse.return_personal_info())
+    print('LabTech Details :', labtech.return_personal_info())
+    print('Patient Details :', patient.return_personal_info())
 
 if __name__ == '__main__':main()
